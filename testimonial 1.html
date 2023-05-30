@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.transitions.css">
+    <style>
+      /* CSS styles here */
+      body {
+        background-color: #f0f8ed;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .demo {
+        margin-top: 50px;
+        text-align: center;
+      }
+      
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+      
+      .testimonial {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      
+      .testimonial .pic img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: block;
+      }
+      
+      .testimonial .title {
+        font-size: 24px;
+        color: #333333;
+        margin-bottom: 10px;
+      }
+      
+      .testimonial .post {
+        font-size: 16px;
+        color: #666666;
+        margin-bottom: 20px;
+      }
+      
+      .testimonial .description {
+        font-size: 14px;
+        color: #666666;
+        line-height: 1.6;
+      }
+      
+      .owl-theme .owl-controls {
+        margin-top: 30px;
+        text-align: center;
+      }
+      
+      .owl-theme .owl-controls .owl-page span {
+        background: #77dd77;
+        display: inline-block;
+        height: 12px;
+        width: 12px;
+        margin: 0 5px;
+        border-radius: 50%;
+      }
+      
+      .owl-theme .owl-controls .owl-page.active span {
+        background-color: #338033;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div id="testimonial-slider" class="owl-carousel">
+              <div class="testimonial">
+                <div class="pic">
+                  <img src="https://www.linkpicture.com/q/received_778534037281572.jpeg">
+                </div>
+                <h3 class="title">Williamson</h3>
+                <span class="post">Web Developer</span>
+                <p class="description">
+                &ldquo;DocuBoot has revolutionized our XYZ document management processes. Its seamless integration, powerful search functionality, enhanced collaboration, robust security measures, and excellent support have made it an invaluable tool for our XYZ team. I highly recommend the DMS to any organization looking to streamline their document management and improve efficiency.&rdquo;
+                </p>
+              </div>
+              <div class="testimonial">
+                <div class="pic">
+                  <img src="https://www.linkpicture.com/q/received_242475181807854.jpeg">
+                </div>
+  <h3 class="title"> Johnson </h3>
+  <span class="post">Operations Manager</span>
+  <p class="description">
+    &ldquo;DocuBoot has significantly improved our document management processes. Its user-friendly interface, efficient file organization, comprehensive search capabilities, and reliable security measures have transformed the way we handle our documents. The seamless integration with our existing systems and the excellent customer support have made DocuBoot an essential tool for our operations. I highly recommend it to any organization seeking to streamline their document workflows.&rdquo;
+  </p>
+</div>
+             
+              <div class="testimonial">
+                <div class="pic">
+                  <img src="https://www.linkpicture.com/q/received_235731632431736.jpeg">
+                </div>
+                <h3 class="title">John</h3>
+                <span class="post">Graphic Designer</span>
+                <p class="description">
+                  &ldquo;DocuBoot is its robust security measures. With sensitive information being a significant concern for our organization, we needed a system that could ensure the confidentiality and integrity of our documents. This system provides comprehensive access controls, encryption, and audit trails, giving us peace of mind knowing that our documents are protected.&rdquo;
+                </p>
+              </div>
+              <div class="testimonial">
+                <div class="pic">
+                  <img src="https://www.linkpicture.com/q/images-8_31.jpeg">
+                </div>
+                <h3 class="title">Emily</h3>
+                <span class="post">Content Writer</span>
+                <p class="description">
+                 &ldquo;DocuBoot revolutionized our document management practices at Rebels Enterprises. It has eliminated the chaos of paper-based processes, improved efficiency, and strengthened data security.I highly recommend this system to any organization looking to streamline their document management and enhance productivity.&rdquo;
+                </p>
+              </div>
+              <div class="testimonial">
+                <div class="pic">
+                  <img src="https://www.linkpicture.com/q/received_3352176495095398_2.jpeg">
+                </div>
+                <h3 class="title">Tyler</h3>
+                <span class="post">Marketing Specialist</span>
+                <p class="description">
+                 &ldquo;The DocuBoot has improved document handling, search functionality, collaboration, and security in our organization. The user-friendly interface and support during implementation were commendable. It has saved us time, improved collaboration, and boosted overall efficiency. Highly recommended.&rdquo; 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    
+    <script>
+      $(document).ready(function(){
+        $("#testimonial-slider").owlCarousel({
+          items: 1,
+          itemsDesktop: [1000, 1],
+          itemsDesktopSmall: [979, 1],
+          itemsTablet: [768, 1],
+          pagination: true,
+          transitionStyle: "backSlide",
+          autoPlay: true
+        });
+      });
+    </script>
+  </body>
+</html>
+
+

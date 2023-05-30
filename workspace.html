@@ -1,0 +1,659 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-B2NkyFdPFyviVxVDTYDmGB+51sIAd7JshfGOBGxBpZAzQ/gb60FhPeRMdZtumGn1K7NQFAXaZrEpF4TwB+GxMA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel = "stylesheet" href =  "https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+                    <!-- <link rel="stylesheet" href="styles.css"> -->
+                    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                    <link rel="icon" href="images/workspace-icon.png">
+                    <title>Workspace</title>
+        </head>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                position: relative;
+                min-height: 100vh;
+                width: 100%;
+            }
+            #nav-bar{
+            position: sticky;   
+            top: 0;
+            z-index: 10;
+        }
+            .navbar {
+                background: linear-gradient(to bottom right, #71e5be, #22a6b3);
+                padding: 0 !important;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            
+            .sidebar{
+                position: fixed;
+                left: 0;
+                height: 100%;
+                width: 78px;
+                background: linear-gradient(to bottom right, #71e5be, #22a6b3);
+                transition: all 0.5s ease;
+            }
+            .sidebar.active{
+                width: 240px;
+            }
+            .sidebar .logo_content .logo{
+                color: #fff;
+                display: flex;
+                height: 50px;
+                width: 100%;
+                align-items: center;
+            }
+            .sidebar .logo_content .logo .logo_name{
+                opacity: 0;
+                pointer-events: none;
+            }
+            /* asas */
+            .sidebar.active .logo_content .logo .logo_name{
+                opacity: 1;
+                pointer-events: none;
+            }
+            .logo_content .logo i{
+                font-size: 28px;
+                margin-right: 5px;
+            }
+            .logo_content .logo .logo_name{
+                font-size: 20px;
+                font-weight: 400;
+            }
+            .sidebar #btn{
+                position: absolute;
+                left: 45%;
+                top: 6px;
+                font-size: 20px;
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                line-height: 50px;
+                transform: translateX(-50%);
+                cursor: pointer;
+            }
+            .sidebar.active #btn{
+                left: 90%;
+            }
+            .sidebar ul {
+                margin-top: 20px;
+            }
+            .sidebar ul li {
+                position: relative;
+                height: 50px;
+                width: 100%;
+                list-style: none;
+                margin: 0 5px;
+                line-height: 50px;
+            }
+        /* tooltip */
+            /* Custom CSS for the tooltip */
+        .custom-tooltip {
+        position: relative;
+        display: inline-block;
+        }
+        /* body {
+        background: linear-gradient(to bottom right, rgba(167, 225, 213, 0.8), rgba(60, 190, 204, 0.8));
+        background-size: cover;
+        background-repeat: no-repeat;
+        } */
+
+        /* Tooltip content */
+        .custom-tooltip .tooltip-content {
+        visibility: hidden;
+        width: 110px;
+        background-color:#71e5be;
+        color: #000;
+        text-align: center;
+        border-radius: 10px;
+        padding: 3px;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        display: block;
+        }
+        .sidebar .custom-tooltip {
+            left: 20%;
+        }
+        .sidebar.active .custom-tooltip{
+            left: 2%;
+        }
+        /* Tooltip arrow */
+        .custom-tooltip .tooltip-content::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -10px;
+        margin-top: -5px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent transparent #22a6b3;
+        }
+
+        .sidebar.active .custom-tooltip .tooltip-content{
+            display: none;
+        }
+
+        /* Show the tooltip when hovering over the element */
+        .custom-tooltip:hover .tooltip-content {
+        visibility: visible;
+        opacity: 1;
+        }
+        .sidebar.active .links_name{
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .sidebar .links_name{
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* .sidebar.active ul li .placeholders{
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .sidebar ul li .placeholders{
+            opacity: 0;
+            pointer-events: none;
+        } */
+        /* end tooltip */
+            .sidebar ul li a{
+                color: #fff;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                transition: all 0.4s ease;
+                border-radius: 12px;
+                white-space: nowrap;
+                width: 96%;
+                }
+                .sidebar ul li a:hover{
+                color: darkcyan;
+                background:white;
+                }
+                .sidebar ul li a i{
+                height: 50px;
+                min-width: 30px;
+                border-radius: 12px;
+                line-height: 50px;
+                text-align: center;
+            }
+            .sidebar ul li input{
+                position: absolute;
+                height: 100%;
+                width: 90%;
+                left: 0;
+                top: 0;
+                border-radius: 12px;
+                outline: none;
+                border:none;
+                background: #22a6b3;
+                padding-left: 50px;
+                color: #fff;
+            }
+            .sidebar ul li .fa-search{
+                position: absolute;
+                z-index: 99;
+                color: #71e5be;
+                top: 15%;
+                left: 10%;
+                top: 35%;
+                font-size: 16px;
+            }
+            .sidebar .profile-content{
+                position: absolute;
+                color: #fff;
+                left: 0;
+            }
+            .sidebar .profile-content .profile{
+                position: relative;
+                padding: 5px 6px;
+                height: 60px;
+            }
+                .profile-content .profile .profile_details{
+                display: flex;
+                align-items: center;
+            }
+            .profile-content .profile .name-job{
+                opacity: 0;
+                pointer-events: none;
+                white-space: nowrap;
+            }
+            .sidebar.active  .profile-content .profile .name-job{
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .profile .profile_details img {
+                height: 45px;
+                width: 45px;
+                object-fit: cover;
+            }
+            .profile .profile_details .name-job {
+                margin-left: 10px;
+            }
+            .profile .profile_details .name{
+                font-size: 15px;
+                font-weight:900;
+            }
+            .profile .profile_details .role{
+                font-size: 13px;
+            }
+
+            .profile .fas {
+                position: absolute;
+                left: 88%;
+                bottom: 5px;
+                min-width: 50px;
+                line-height: 50px;
+                font-size: 20px;
+                border-radius: 12px;
+                opacity: 0;
+                transition: 1.5s  ease-in-out;
+            }
+            .sidebar.active .profile .fas{
+                opacity: 1;
+            }
+            .home-content{
+                position: absolute;
+                height: 100%;
+                width: calc(100% - 240px);
+                left: 240px;
+                
+            }.home-content .text{
+                font-size: 25px;
+                font-weight: 500;
+                margin: 12px;
+            }
+            
+            .hide-placeholder::placeholder {
+            opacity: 0;
+            }
+            .sidebar.active .hide-placeholder::placeholder{
+                opacity: 1;
+            }
+        /*  GRIDS SECTION DOCUMENTS  */
+            .container {
+                    margin-top: 50px;
+                }
+
+                .card {
+                    width: 200px;
+                    margin-bottom: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+
+                .card-body {
+                    text-align: center;
+                    padding: 20px;
+                }
+
+                .card-title {
+                    font-weight: bold;
+                    margin-bottom: 0;
+                    font-size: 18px;
+                }
+
+                .icon {
+                    font-size: 40px;
+                    margin-bottom: 10px;
+                }
+
+                .blank-document {
+                    background-color: rgb(19, 19, 186);
+                    border: 1px solid #dcdcdc;
+                }
+
+                .presentation {
+                    background-color: rgb(204, 157, 70);
+                    border: 1px solid #d2e3fc;
+                }
+
+                .report {
+                    background-color:rgb(214, 83, 83);
+                    border: 1px solid #f0d6d6;
+                }
+
+                .note {
+                    background-color: rgb(15, 136, 15);
+                    border: 1px solid #eaf5d2;
+                }
+                body {
+                    margin: 0;
+                    padding: 0;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    }
+                    @media (max-width: 575.98px) {
+                    /* .sidebar {
+                        left: -100%;
+                    } */
+
+                    .sidebar.active {
+                        left: 0;
+                    }
+
+                    .home-content {
+                        margin-left: 0;
+                        padding: 10px;
+                    }
+                }
+                /* Responsive styles for screens between 576px and 767.98px */
+                @media (min-width: 576px) and (max-width: 767.98px) {
+                    .home-content .container {
+                        padding: 0 10px;
+                    }
+                }
+                html{
+                    scroll-behavior: smooth;
+                }
+                @media (max-width: 575.98px) {
+        .logo {
+        width: 50px;
+        height: 50px;
+        }
+        
+        .fs-3 {
+        font-size: 1.5rem;
+        }
+    }
+    
+    /* For screens between 576px and 767.98px */
+    @media (min-width: 576px) and (max-width: 767.98px) {
+        .logo {
+        width: 75px;
+        height: 75px;
+        }
+    }
+    
+    /* For screens larger than 768px */
+    @media (min-width: 768px) {
+        .logo {
+        width: 100px;
+        height: 100px;
+        }
+    }
+                </style>
+        <body>
+            <section id = "nav-bar">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                        <div class="container-fluid">
+                            <div class="col-md-6">
+                                <a href="main.html" class="text-decoration-none">
+                                <div class="mb-0">
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/logo.png" alt="logo" width="10%" height="10%" class="me-2">
+                                        <p class="fw-bold fs-3 text-dark text-shadow">DocuBoot</p>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                    </nav>
+            </section>
+
+            <div class="sidebar">
+                <div class="logo_content">
+                    <div class="logo">
+                        <div class="logo_name text-dark fw-bold">
+                            <img class ="w-5" src="images/logo.png" alt="logo" width="10%" height="10%" class="me-2">
+                            DocuBoot
+                        </div>
+                        <i class="fa fa-bars" id="btn"></i>
+                    </div>
+                    <ul class="nav_list list-unstyled">
+                        <li>
+                                <i class="fa fa-search"></i>
+                                <input class ="hide-placeholder"type="text" placeholder="Search...">
+                        </li>
+                        <br>
+                        <li>
+                            <a href="" class="custom-tooltip">
+                                <i class="fa fa-user" ></i>
+                                <span class="links_name" >Profile</span>
+                                <span class="tooltip-content">Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#document-section" class="custom-tooltip">
+                                <i class="fa fa-file"></i>
+                                <span class="links_name">Documents</span>
+                                <span class="tooltip-content">Documents</span>   
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class = "custom-tooltip">
+                                <i class="fa fa-history"></i>
+                                <span class="links_name">Recent Works</span>
+                                <span class="tooltip-content">Recent Works</span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="custom-tooltip" id="notification-menu">
+                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                <span class="links_name">Notifications</span>
+                                <span class="tooltip-content">Notifications</span>
+                            </a>
+                        </li>
+                        
+                            <li>
+                            <a href="" class="custom-tooltip">
+                                <i class="fa fa-share"></i>
+                                <span class="links_name" class="shared">Shared Documents</span>
+                                <span class="tooltip-content w-100 ">Shared</span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class = "custom-tooltip">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                <span class="links_name">Trash</span>
+                                <span class="tooltip-content">Trash</span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""  class = "custom-tooltip">
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                <span class="links_name">Settings</span>
+                                <span class="tooltip-content">Settings</span> 
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="main.html">
+                    <div class="profile-content" style="margin-top:15px;">
+                        <div class="profile">
+                            <div class="profile_details">
+                                <img src="images/profile1.png" alt="2x2-image">
+                                <div class="name-job">
+                                    <div class="name">Dexter Cruz</div>
+                                    <div class="role">Student</div>
+                                </div>  
+                            </div>
+                            <i class="fas fa-sign-out-alt" style="transform: rotate(180deg);"></i>
+                        </div>
+                        
+                    </div>
+                </a>
+                </div>
+            </div>
+            <!-- TOAST CONTENTS  -->
+            <div class="toast" style="position: fixed; top: 20px; right: 20px; z-index: 9999;" id="notification-toast-1" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" data-delay="5000">
+                <div class="toast-header">
+                    <img src="images/profile2.png" class="rounded-1 profile-icon" style="width: 30px; height: 30px;" alt="..." >
+                    <strong class="mr-auto" style="padding-left: 2px;">John Mark</strong>
+                    <small class="text-muted" style="position: absolute;  right: 60px;">just now</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" style="position: absolute; top: 0; right: 3px; font-size: 25px;border: none; background: none;"aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="toast-body">
+                            <h5><i class="fas fa-check-circle"></i> Document Viewed</h5>
+                            <p><strong>John Mark</strong> just viewed the documentation you shared.</p>
+                            </div>
+                        </div>
+                    
+                    <!-- TOAST TWO  -->
+                    <div class="toast" style="position: fixed; top: 20px; right: 20px; z-index: 1000;" id="notification-toast-2" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" data-delay="5000">
+                        <div class="toast-header">
+                            <img src="images/profile3.png" class="rounded-1 profile-icon" style="width: 30px; height: 30px;" alt="..." >
+                            <strong class="mr-auto" style="padding-left: 2px;">Doe Mc</strong>
+                            <small class="text-muted" style="position: absolute;  right: 60px;">20 minutes ago</small>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" style="position: absolute; top: 0; right: 3px; font-size: 25px;border: none; background: none;"aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="toast-body">
+                                <h5><i class="fas fa-file-upload"></i> File Shared</h5>
+                                <p><strong>Doe Mc</strong> just shared a file with you.</p>
+                                </div>
+                            </div>
+                            <!-- TOAST THREE -->
+                            <div class="toast" style="position: fixed; top: 20px; right: 20px; z-index: 1001;" id="notification-toast-3" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" data-delay="5000">
+                                <div class="toast-header">
+                                    <img src="images/profile4.png" class="rounded-1 profile-icon" style="width: 30px; height: 30px;" alt="..." >
+                                    <strong class="mr-auto" style="padding-left: 2px;">Maria Gabrielle</strong>
+                                    <small class="text-muted" style="position: absolute;  right: 60px;">30 minutes ago</small>
+                                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" style="position: absolute; top: 0; right: 3px; font-size: 25px;border: none; background: none;"aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="toast-body">
+                                        <h5><i class="fas fa-edit"></i> Document Suggestion</h5>
+                                        <p><strong>Maria Gabrielle</strong> suggested a modification to the document you shared.</p>
+                                        </div>
+                                    </div>
+                                    <!-- TOAST FOUR  -->
+                                    <div div class="toast" style="position: fixed; top: 20px; right: 20px; z-index: 1002;" id="notification-toast-4" role="alert" aria-live="assertive" aria-atomic="true"data-autohide="false" data-delay="5000" >
+                                        <div class="toast-header">
+                                            <img src="images/profile5.png" class="rounded-1 profile-icon" style="width: 30px; height: 30px;" alt="..." >
+                                            <strong class="mr-auto" style="padding-left: 2px;">Vanessa Gabrielle</strong>
+                                            <small class="text-muted" style="position: absolute;  right: 60px;">1 hour ago</small>
+                                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" style="position: absolute; top: 0; right: 3px; font-size: 25px;border: none; background: none;"aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="toast-body">
+                                                <h5><i class="fas fa-comment"></i> Document Comment</h5>
+                                                    <p><strong>Vaness Gabrielle</strong> commented on the documentation you shared.</p>
+                                                </div>
+                                            </div>
+                    <!-- END OF TOAST CONTENTS  -->
+                    <script>
+                            $(document).ready(function() {
+        $('#notification-menu').on('click', function(e) {
+            e.preventDefault();
+            showNotifications();
+        });
+        $('.toast .close').on('click', function() {
+            var toastId = $(this).closest('.toast').attr('id');
+            $('#' + toastId).toast('hide');
+        });
+        function showNotifications() {
+    setTimeout(function() {
+        $('#notification-toast-4').toast('show');
+    });
+    setTimeout(function() {
+        $('#notification-toast-3').toast('show');
+    }, 5000);
+    setTimeout(function() {
+        $('#notification-toast-2').toast('show');
+    }, 10000);
+    setTimeout(function() {
+        $('#notification-toast-1').toast('show');
+    }, 15000);
+}
+    });
+                    </script>
+            <!-- HOME CONTENT  -->
+            <div class="home-content pt-lg-3">
+                
+                <div class="text">  <p class="fw-bold mb-0  text-shadow overlay-text text-muted " style="color: black">Start a new Document!</p> 
+                </div>
+                
+            <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 " id="document-section">
+            <div class="card blank-document">
+                <a href="blank-docu.html" class="text-decoration-none text-dark">
+                <div class="card-body">
+                    <i class="fas fa-file-word icon text-light"></i>
+                    <h5 class="card-title text-light">Word</h5>
+                </div>
+                </a>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card presentation">
+                <div class="card-body">
+                <span class="material-icons icon text-light">slideshow</span>
+                <h5 class="card-title text-light">Presentation (PPT)</h5>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 ">
+            <div class="card report ">
+                <div class="card-body">
+                    <i class="fas fa-file-pdf icon text-light"></i>
+                <h5 class="card-title text-light">PDF</h5>
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card note">
+                <div class="card-body">
+                    <i class="fas fa-file-excel icon text-light"></i>
+                <h5 class="card-title text-light">Excel</h5>
+                </div>
+            </div>
+            </div>
+        </div>
+        <hr style="border-top: 2px solid; width: 100%;">
+        <section class="recent-works">
+            <div class="container">
+            <div class="card">
+                <p>as</p>
+            </div>
+            </div>
+        </section>
+        </div>
+            </div>
+            <script>
+                let btn = document.querySelector("#btn");
+                let sidebar = document.querySelector(".sidebar");
+                let searchBtn= document.querySelector(".fa-search");
+                btn.onclick = function (){
+                    sidebar.classList.toggle("active");
+                }
+                searchBtn.onclick = function (){
+                    sidebar.classList.toggle("active");
+                }
+                </script>
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            </body>
+            
+        </html>

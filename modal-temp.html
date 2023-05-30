@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Document Cards</title>
+    <style>
+        .card {
+            width: 200px;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+
+        .card-body {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .blank-document {
+            background-color: #F5F5F5;
+        }
+
+        .presentation {
+            background-color: #F8BBD0;
+        }
+
+        .report {
+            background-color: #B2EBF2;
+        }
+
+        .note {
+            background-color: #FFF59D;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card blank-document">
+                    <div class="card-body">
+                        <span class="material-icons icon">insert_drive_file</span>
+                        <h5 class="card-title">Blank Document</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card presentation">
+                    <div class="card-body">
+                        <span class="material-icons icon">slideshow</span>
+                        <h5 class="card-title">Presentation (PPT)</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card report">
+                    <div class="card-body">
+                        <span class="material-icons icon">description</span>
+                        <h5 class="card-title">Report</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card note">
+                    <div class="card-body">
+                        <span class="material-icons icon">note</span>
+                        <h5 class="card-title">Note</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
